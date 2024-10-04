@@ -1,0 +1,49 @@
+graph TD
+	A[Main Function]
+	A --> B[Opening Credits]
+	A --> C[Main Menu]
+	A --> D[Create Layers]
+	
+	D --> E[Validate Depth]
+	E --> F{Input Valid?}
+	F -- Yes --> G[Confirm Input]
+	F -- No --> E
+	
+	G --> H{Confirmed?}
+	H -- Yes --> I[Initialize Local Variables]
+	H -- No --> E
+	
+	I --> J[Single Layer Loop]
+	J --> K[Prompt for Directory Name]
+	K --> L{Valid Name?}
+	L -- Yes --> M[Create Directory]
+	L -- No --> K
+	
+	M --> N[Prompt to Add File]
+	N --> O{Add File?}
+	O -- Yes --> P[Enter File Name]
+	O -- No --> J
+	
+	P --> Q[Enter File Content]
+	Q --> R[Create File]
+	R --> J
+	
+	J --> S[Loop to Next Layer]
+	S --> D
+	
+	D --> T[Success Message]
+	T --> U[Exit Code 0]
+	
+	subgraph Confirm Function
+		E --> V[Prompt for Confirmation]
+		V --> W{Confirmed?}
+		W -- Yes --> X[Return Success]
+		W -- No --> Y[Return to Parent Function]
+	end
+
+	subgraph Opening Credits
+		B --> Z[Check Logo File]
+		Z -- Exists --> AA[Display Logo]
+		Z -- Missing --> AB[Display Welcome Message]
+	end
+
